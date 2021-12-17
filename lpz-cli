@@ -10,12 +10,12 @@ c_cyan="\033[1;36m"
 c_reset="\033[0m"
 
 help_text () {
-  while IFS= read line; do
-    printf "%s\n" "$line"
-  done <<-EOF
-  USAGE: $prog <query>
-   -h  show this help text
-  EOF
+	while IFS= read line; do
+		printf "%s\n" "$line"
+	done <<-EOF
+	USAGE: $prog <query>
+	 -h	 show this help message
+	EOF
 }
 
 die () {
@@ -74,5 +74,6 @@ while :; do
       die "invalid choice"
       ;;
   esac
+
 
 done
