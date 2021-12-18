@@ -9,7 +9,7 @@ c_magenta="\033[1;35m"
 c_cyan="\033[1;36m"
 c_reset="\033[0m"
 
-help_text () {
+msg_help () {
 	while IFS= read line; do
 		printf "%s\n" "$line"
 	done <<-EOF
@@ -33,10 +33,10 @@ do
 done
 
 : '
-while getopts "h:" OPT; do
-  case $OPT in
+while getopts "h:" zZz; do
+  case $zZz in
     h)
-      help_text
+      msg_help
       exit 0
       ;;
   esac
