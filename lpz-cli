@@ -23,23 +23,33 @@ die () {
   exit 1
 }
 
-while getopts ":h:p:" OPT; do
-    case $OPT in
-        h)
-          printf "$c_yellow help text"
-          exit 0
-          ;;
-    esac
+tput reset
+while [ "$episode" -lt 1 ] || [ "$episode" -gt "$last_ep_number" ]
+do
+  err "Episode out of range"
+  printf "${c_blue}Choose episode $c_cyan[1-%d]$c_reset:$c_green " $last_ep_number
+  read episode
+  printf "$c_reset"
 done
 
+: '
+while getopts "h:" OPT; do
+  case $OPT in
+    h)
+      help_text
+      exit 0
+      ;;
+  esac
+done
+'
+
 while :; do
+  tput reset
   printf "$c_blue[${c_cyan}%s$c_blue] $c_magenta%s$c_reset\n" "r" "r option"
   printf "$c_blue[${c_cyan}%s$c_blue] $c_yellow%s$c_reset\n" "a" "a option"
   printf "$c_blue[${c_cyan}%s$c_blue] $c_magenta%s$c_reset\n" "h" "h option"
   printf "$c_blue[${c_cyan}%s$c_blue] $c_red%s$c_reset\n\n" "q" "exit"
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_cyan%s$c_reset\n" "l" "l option"
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_cyan%s$c_reset\n" "cl" "cl option"
-  printf "${c_blue}Enter choice:${c_green} "
+  printf "${c_yellow}Enter choice:${c_cyan} "
   read choice
 
   case $choice in
@@ -64,16 +74,9 @@ while :; do
     q)
       break
       ;;
-    l)
-      continue
-      ;;
-    cl)
-      continue
-      ;;
     *)
       die "invalid choice"
       ;;
   esac
-
 
 done
