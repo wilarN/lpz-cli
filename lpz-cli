@@ -9,6 +9,8 @@ c_magenta="\033[1;35m"
 c_cyan="\033[1;36m"
 c_reset="\033[0m"
 
+msgLine="${c_yellow}-------------\n"
+
 msg_help () {
 	while IFS= read line; do
 		printf "%s\n" "$line"
@@ -23,32 +25,14 @@ die () {
   exit 1
 }
 
-tput reset
-while [ "$episode" -lt 1 ] || [ "$episode" -gt "$last_ep_number" ]
-do
-  err "Episode out of range"
-  printf "${c_blue}Choose episode $c_cyan[1-%d]$c_reset:$c_green " $last_ep_number
-  read episode
-  printf "$c_reset"
-done
-
-: '
-while getopts "h:" zZz; do
-  case $zZz in
-    h)
-      msg_help
-      exit 0
-      ;;
-  esac
-done
-'
-
 while :; do
   tput reset
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_magenta%s$c_reset\n" "r" "r option"
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_yellow%s$c_reset\n" "a" "a option"
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_magenta%s$c_reset\n" "h" "h option"
-  printf "$c_blue[${c_cyan}%s$c_blue] $c_red%s$c_reset\n\n" "q" "exit"
+  printf "$msgLine"
+  printf "$c_blue[${c_cyan}%s$c_blue] $c_green%s$c_reset\n" "r" "r option"
+  printf "$c_blue[${c_cyan}%s$c_blue] $c_green%s$c_reset\n" "a" "a option"
+  printf "$c_blue[${c_cyan}%s$c_blue] $c_green%s$c_reset\n" "h" "h option"
+  printf "$c_blue[${c_cyan}%s$c_blue] $c_red%s$c_reset\n" "q" "exit"
+  printf "$msgLine\n"
   printf "${c_yellow}Enter choice:${c_cyan} "
   read choice
 
