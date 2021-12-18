@@ -1,1 +1,1 @@
-# lpz-cli
+# lpz-cli software
