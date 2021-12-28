@@ -6,7 +6,6 @@ prog="lpz-cli"
 saveDir="/usr/share/lpz-cli/"
 lpz_file="/usr/share/lpz-cli/lpz_file.txt"
 
-
 # Color Codes
 c_red="\033[1;31m"
 c_green="\033[1;32m"
@@ -25,7 +24,6 @@ msg_help () {
 	USAGE: $prog <query>
 	EOF
 }
-
 
 # Kill/exit
 die () {
@@ -52,13 +50,6 @@ createFileDir() {
 		printf "$c_yellow Created file $lpz_file\n $c_reset"
 	fi
 }
-
-# if [ $# -ne 1 ]; then
-# 	msg_help
-# 	exit 1
-# fi
-
-
 
 # Actually calling the create function.
 createFileDir
