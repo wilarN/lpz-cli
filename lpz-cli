@@ -14,7 +14,6 @@ c_blue="\033[1;34m"
 c_magenta="\033[1;35m"
 c_cyan="\033[1;36m"
 c_reset="\033[0m"
-
 msgLine="${c_yellow}-------------\n"
 
 msg_help () {
@@ -87,5 +86,4 @@ while :; do
       die "invalid choice"
       ;;
   esac
-
 done
